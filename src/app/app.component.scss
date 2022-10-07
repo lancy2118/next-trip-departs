@@ -1,0 +1,16 @@
+.toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  background-color: rgb(204, 0, 0);
+  color: white;
+  font-weight: 600;
+  padding: 10px;
+}
+.select-options {
+  width: 100%;
+}

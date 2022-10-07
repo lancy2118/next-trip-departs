@@ -1,0 +1,48 @@
+<div class="card-container">
+  <form [formGroup]="routeForm" class="form-style">
+    <div class="form-group">
+      <select
+        class="form-select"
+        formControlName="route"
+        id="route"
+        (change)="routeSelectedEvent($event)"
+      >
+        <option value="" disabled selected>Select Route</option>
+        <option *ngFor="let route of availableRoutes" [value]="route.route_id">
+          {{ route.route_label }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <select
+        *ngIf="showDirectionOptions"
+        class="form-select"
+        formControlName="direction"
+        id="direction"
+        (change)="directionSelectedEvent($event)"
+      >
+        <option value="" disabled selected>Select Direction</option>
+        <option
+          *ngFor="let direction of availableDirections"
+          [value]="direction.direction_id"
+        >
+          {{ direction.direction_name }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <select
+        *ngIf="showStopOptions"
+        class="form-select"
+        formControlName="stop"
+        id="stop"
+        (change)="stopSelectedEvent($event)"
+      >
+        <option value="" disabled selected>Select Stop</option>
+        <option *ngFor="let stop of availableStops" [value]="stop.place_code">
+          {{ stop.description }}
+        </option>
+      </select>
+    </div>
+  </form>
+</div>

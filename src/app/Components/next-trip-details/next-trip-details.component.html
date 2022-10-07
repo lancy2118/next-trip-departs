@@ -1,0 +1,40 @@
+<div class="content trip-info">
+  <table *ngIf="showMyTrip && nextTripDetails" class="table highlight-row">
+    <thead>
+      <tr class="departure-details">
+        <td colspan="2">{{ nextTripDetails.stops[0].description }}</td>
+        <td>
+          Stop #: <span>{{ nextTripDetails.stops[0].stop_id }}</span>
+        </td>
+      </tr>
+      <tr class="highlight-route-heading">
+        <th scope="col" class="text-uppercase">route</th>
+        <th scope="col">DESTINATION</th>
+        <th scope="col">DEPARTS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="nextTripDetails?.departures.length == 0">
+        <td colspan="3">Currently no services available</td>
+      </tr>
+      <tr
+        *ngFor="
+          let tripDetails of nextTripDetails?.departures
+            | slice: 0:(showMoreRoutes ? nextTripDetails.departures.length : 3)
+        "
+      >
+        <td>{{ tripDetails.route_short_name }}</td>
+        <td>{{ tripDetails.description }}</td>
+        <td>{{ tripDetails.departure_text }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button
+    type="button"
+    *ngIf="showMyTrip && nextTripDetails"
+    class="btn show-departs-btn mb-2"
+    (click)="showMoreRoutes = !showMoreRoutes"
+  >
+    {{ showMoreRoutes ? "Less Departures" : "More Departures" }}
+  </button>
+</div>

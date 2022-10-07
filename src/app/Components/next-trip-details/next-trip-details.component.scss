@@ -1,0 +1,24 @@
+.table {
+  display: inline-table;
+}
+
+.highlight-row {
+  background-color: #f5f5f4;
+}
+.departure-details {
+  font-weight: bold;
+  font-size: 14px;
+}
+.show-departs-btn {
+  background-color: rgb(204, 0, 0);
+  border-color: rgb(204, 0, 0);
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  height: 50px;
+}
+.highlight-route-heading {
+  background-color: #ffaa33;
+}
+.trip-info{
+  margin:0px auto !important;
+}
