@@ -9,7 +9,7 @@ export class SharedDataService {
   public showMyTrip$ = this._showMyTrip$.asObservable();
 
   //function which keeps tracks of input changes which is used to hide/display the next departure section
-  sendData(data: boolean): any {
+  sendData(data: boolean) {
     this._showMyTrip$.next(data);
   }
 }

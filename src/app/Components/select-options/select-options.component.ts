@@ -27,7 +27,6 @@ export class SelectOptionsComponent implements OnInit {
   public availableDirections: Direction[];
   public availableStops: Stop[];
   public nextTripDetails: NextTripDetails;
-  public more = false;
 
   routeForm!: FormGroup;
 

@@ -19,7 +19,7 @@ export class NextTripDetailsComponent implements OnInit {
 
   constructor(
     private _nextTripService: NextTripService,
-    private route: ActivatedRoute,
+    private _route: ActivatedRoute,
     private _sharedDataService: SharedDataService
   ) {}
 
@@ -46,7 +46,7 @@ export class NextTripDetailsComponent implements OnInit {
 
   // fetch route id, direction id, stop id from quuery params and call getTripDetails
   ngOnInit(): void {
-    this.route.params.subscribe((routeParams) => {
+    this._route.params.subscribe((routeParams) => {
       this.selectedRouteId = routeParams['routeId'];
       this.selectedDirectionId = routeParams['directionId'];
       this.selectedStopId = routeParams['stopId'];
