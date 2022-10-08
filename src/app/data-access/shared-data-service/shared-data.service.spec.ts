@@ -20,4 +20,17 @@ describe('SharedDataService', () => {
       expect(res).toBe(false);
     });
   });
+
+  it('should emit value when sendSelectedRouteDetails is called', () => {
+    service.sendSelectedRouteDetails('123', 12, '123');
+    service.showSelectedRouteId$.subscribe((res) => {
+      expect(res).toBe('123');
+    });
+    service.showSelectedDirectionId$.subscribe((res) => {
+      expect(res).toBe(12);
+    });
+    service.showSelectedStopId$.subscribe((res) => {
+      expect(res).toBe('123');
+    });
+  });
 });

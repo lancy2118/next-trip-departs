@@ -65,6 +65,7 @@ describe('NextTripDetailsComponent', () => {
           useValue: {
             showMyTrip$: of(true),
             sendData: () => {},
+            sendSelectedRouteDetails: () => {},
           },
         },
         {
@@ -98,14 +99,20 @@ describe('NextTripDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should get values from query params and assign accordingly and call getTripDetails', () => {
+  it('should get values from query params and assign accordingly and call getTripDetails and store selected values', () => {
     spyOn(component, 'getTripDetails').and.callThrough();
+    spyOn(sharedDataService, 'sendSelectedRouteDetails').and.callThrough();
     component.ngOnInit();
     fixture.detectChanges();
     expect(component.selectedRouteId).toBe('123');
     expect(component.selectedDirectionId).toBe(12);
     expect(component.selectedStopId).toBe('123');
     expect(component.getTripDetails).toHaveBeenCalled();
+    expect(sharedDataService.sendSelectedRouteDetails).toHaveBeenCalledWith(
+      '123',
+      12,
+      '123'
+    );
   });
 
   it('should call getNextTripDetails and assign value and show trip details ', () => {

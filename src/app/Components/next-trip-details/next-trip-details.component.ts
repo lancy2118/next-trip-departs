@@ -45,12 +45,17 @@ export class NextTripDetailsComponent implements OnInit {
     }
   }
 
-  // fetch route id, direction id, stop id from quuery params and call getTripDetails
+  // fetch route id, direction id, stop id from query params and call getTripDetails and store selected values
   ngOnInit(): void {
     this._route.params.subscribe((routeParams) => {
       this.selectedRouteId = routeParams['routeId'];
       this.selectedDirectionId = routeParams['directionId'];
       this.selectedStopId = routeParams['stopId'];
+      this._sharedDataService.sendSelectedRouteDetails(
+        this.selectedRouteId,
+        this.selectedDirectionId,
+        this.selectedStopId
+      );
       this.getTripDetails();
     });
     this._sharedDataService.showMyTrip$.subscribe((val) => {

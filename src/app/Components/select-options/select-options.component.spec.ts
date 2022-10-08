@@ -66,6 +66,16 @@ describe('SelectOptionsComponent', () => {
               ]),
           },
         },
+        {
+          provide: SharedDataService,
+          useValue: {
+            showSelectedRouteId$: of('123'),
+            showSelectedDirectionId$: of(12),
+            showSelectedStopId$: of('123'),
+            sendData: () => {},
+            sendSelectedRouteDetails: () => {},
+          },
+        },
       ],
     }).compileComponents();
   });
@@ -81,7 +91,7 @@ describe('SelectOptionsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'metro-transit-next-trip'`, () => {
+  it(`should call createRouteForm and getRoutes on Init'`, () => {
     spyOn(component, 'createRouteForm').and.callThrough();
     spyOn(component, 'getRoutes').and.callThrough();
     component.ngOnInit();
@@ -170,5 +180,15 @@ describe('SelectOptionsComponent', () => {
       parseInt(selectDirection.value),
       select.value,
     ]);
+  });
+
+  it(`should update form values when params are present'`, () => {
+    spyOn(component, 'fetchPrevDetails').and.callThrough();
+    component.ngOnInit();
+    fixture.detectChanges();
+    expect(component.fetchPrevDetails).toHaveBeenCalled();
+    expect(component.selectedRouteId).toBe('123');
+    expect(component.selectedDirectionId).toBe(12);
+    expect(component.selectedStopId).toBe('123');
   });
 });
