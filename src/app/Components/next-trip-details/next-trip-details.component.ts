@@ -39,6 +39,7 @@ export class NextTripDetailsComponent implements OnInit {
         .subscribe((res) => {
           if (res?.stops) {
             this.nextTripDetails = res;
+            this._sharedDataService.sendData(true);
           }
         });
     }

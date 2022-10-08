@@ -64,6 +64,7 @@ describe('NextTripDetailsComponent', () => {
           provide: SharedDataService,
           useValue: {
             showMyTrip$: of(true),
+            sendData: () => {},
           },
         },
         {
@@ -109,6 +110,7 @@ describe('NextTripDetailsComponent', () => {
 
   it('should call getNextTripDetails and assign value and show trip details ', () => {
     spyOn(nextTripService, 'getNextTripDetails').and.callThrough();
+    spyOn(sharedDataService, 'sendData').and.callThrough();
     component.ngOnInit();
     fixture.detectChanges();
     expect(nextTripService.getNextTripDetails).toHaveBeenCalledWith(
@@ -118,5 +120,6 @@ describe('NextTripDetailsComponent', () => {
     );
     expect(component.showMyTrip).toBe(true);
     expect(component.nextTripDetails).toBe(nextTripDetails);
+    expect(sharedDataService.sendData).toHaveBeenCalled();
   });
 });
