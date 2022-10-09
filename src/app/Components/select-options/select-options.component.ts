@@ -131,7 +131,11 @@ export class SelectOptionsComponent implements OnInit {
           return of(this.availableDirections);
         }),
         switchMap((directions) => {
-          if (prevDirectionId != this.selectedDirectionId && routeChanged) {
+          if (
+            (prevDirectionId != this.selectedDirectionId ||
+              prevRouteId != this.selectedRouteId) &&
+            routeChanged
+          ) {
             this.availableDirections = directions;
             this.selectedDirectionId = prevDirectionId;
             return this._nextTripService.getStops(
